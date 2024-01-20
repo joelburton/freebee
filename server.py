@@ -9,18 +9,19 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from random import choice, sample
 from string import ascii_lowercase
 
-CENTERS = "".join(set(ascii_lowercase) - set("q"))
+# don't allow uncommon letters, since they make the game less fun
 LETTERS = "".join(set(ascii_lowercase) - set("kwzxjq"))
 
-# num letters to use (in addition to center)
-NUM_LETTERS = 6
 # min # found words for a good game
 MIN_FOUND = 30
 
 req = urllib.request.Request('http://norvig.com/ngrams/enable1.txt')
 with urllib.request.urlopen(req) as response:
     text = response.read().decode("utf8")
-    words = [w for w in text.split() if len(w) >= 4 and "q" not in w]
+    words = [
+        w for w in text.split()
+        if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
+    ]
 
 print("Read words:", ", ".join(words[:5]), "...")
 
@@ -37,8 +38,9 @@ def make_game():
         }
     """
 
+    print("Handling request")
     while True:
-        center = choice(CENTERS)
+        center = choice(LETTERS)
         letters = "".join(sample([c for c in LETTERS if c != center], 6))
         allowed = letters + center
         found = [
@@ -46,6 +48,7 @@ def make_game():
             if center in word and all(ltr in allowed for ltr in word)
         ]
         if len(found) >= MIN_FOUND and any(len(set(w)) == 7 for w in found):
+            print("Found good game")
             return {
                 "letters": letters,
                 "center": center,
