@@ -10,23 +10,31 @@ from random import choice, sample
 from string import ascii_lowercase
 
 # don't allow uncommon letters, since they make the game less fun
-LETTERS = "".join(set(ascii_lowercase) - set("kwzxjq"))
+LETTERS = "".join(set(ascii_lowercase) - set("wzxjq"))
 
 # min # found words for a good game
 MIN_FOUND = 30
 
-req = urllib.request.Request('http://norvig.com/ngrams/enable1.txt')
-with urllib.request.urlopen(req) as response:
-    text = response.read().decode("utf8")
-    words = [
-        w for w in text.split()
-        if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
-    ]
-
-print("Read words:", ", ".join(words[:5]), "...")
+# url to get dictionary (any long wordlist will do; must be http, not https)
+WORDLIST_URL = "http://norvig.com/ngrams/enable1.txt"
 
 
-def make_game():
+def get_dictionary():
+    """Gets dictionary of words.
+
+    So that this doesn't need to be ~2MB of a repo, this gets words
+    at server start via a request.
+    """
+    req = urllib.request.Request(WORDLIST_URL)
+    with urllib.request.urlopen(req) as response:
+        text = response.read().decode("utf8").lower()
+        return [
+            w for w in text.split()
+            if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
+        ]
+
+
+def make_game(words=None):
     """Returns dict like:
 
         {
@@ -38,6 +46,9 @@ def make_game():
         }
     """
 
+    if not words:
+        words = legal_words
+
     print("Handling request")
     while True:
         center = choice(LETTERS)
@@ -47,6 +58,9 @@ def make_game():
             word for word in words
             if center in word and all(ltr in allowed for ltr in word)
         ]
+
+        # only use this game if it's "good" (a good game has plenty of found
+        # words and has at least one "bingo" [uses all letters at least once])
         if len(found) >= MIN_FOUND and any(len(set(w)) == 7 for w in found):
             print("Found good game")
             return {
@@ -59,15 +73,20 @@ def make_game():
             }
 
 
-class MyServer(BaseHTTPRequestHandler):
+class FreeBeeAPIServer(BaseHTTPRequestHandler):
     def do_GET(self):
+        """Single route: it doesn't care what resource you ask for."""
+
         self.send_response(200)
-        self.send_header("Content-type", "application/json")
-        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header("Content-Type", "application/json")
+        self.send_header('Access-Control-Allow-Origin', '*')  # allow CORS
         self.end_headers()
         self.wfile.write(bytes(json.dumps(make_game()), "utf-8"))
 
 
 if __name__ == "__main__":
+    print("Downloading words")
+    legal_words = get_dictionary()
+    print("Read words:", ", ".join(legal_words[:5]), "...")
     print("Starting API server on port 8000")
-    HTTPServer(('', 8000), MyServer).serve_forever()
+    HTTPServer(('', 8000), FreeBeeAPIServer).serve_forever()
