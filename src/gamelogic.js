@@ -12,7 +12,7 @@ function checkWord(word, found, game) {
     return {msg: "Must use center!", ok: false};
   }
 
-  if ([... word].some(ltr =>
+  if ([...word].some(ltr =>
     !(game.letters.includes(ltr) || game.center === ltr))) {
     return {msg: "Invalid letter!", ok: false};
   }

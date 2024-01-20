@@ -1,7 +1,8 @@
 .Letters {
   position: relative;
-  width: 350px;
+  width: 360px;
   height: 360px;
+  margin-left: 10px;
 }
 
 .Letters .Letter:nth-child(1) {

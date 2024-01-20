@@ -47,12 +47,11 @@ function Game({ game }) {
       />
       <Form tryWord={tryWord} />
       <Feedback message={feedback.msg} style={feedback.style} />
-      { found.length > 0 &&
-        <div>
-          <h3>Found
-            {" "}<small>({found.length})</small>
-          </h3>
-          <WordList words={found} />
+      <div>
+        <h3>Found
+          {" "}<small>({found.length})</small>
+        </h3>
+        <WordList words={found} />
         { showMissing
           ? <div>
               <h3>Not Found
@@ -66,8 +65,8 @@ function Game({ game }) {
                 Show {missing.length} missing
             </button>
         }
-        </div>
-      }
+      </div>
+
     </div>
   );
 }
