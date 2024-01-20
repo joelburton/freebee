@@ -10,7 +10,7 @@ import "./Letter.css";
  *
  */
 
-function Letter({ letter, isCenter }) {
+function Letter({ letter, isCenter=false }) {
   console.debug("* Letter", letter, isCenter);
   return (
     <div className={`Letter ${isCenter ? "Letter-isCenter" : ""}`}>

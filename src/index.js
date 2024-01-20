@@ -4,6 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+console.warn(`
+
+🦄 HEY STUDENTS:
+
+To get more/less verbose logging, change logging level to add/remove "Verbose".
+
+— Joel
+
+`);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App />
