@@ -6,8 +6,8 @@ FreeBee React App
 
 Spelling Bee-like game implemented in React.
 
-.. image:: diagram.png
-  :height: 200px;
+Starting
+--------
 
 To use::
 
@@ -18,3 +18,8 @@ And then launch front-end in a separate terminal::
   npm install
   npm start
 
+Design
+------
+
+.. image:: diagram.png
+  :height: 200px
