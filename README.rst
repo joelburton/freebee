@@ -3,6 +3,8 @@ FreeBee React App
 
 Spelling Bee-like game implemented in React.
 
+.. image:: diagram.png
+
 To use::
 
   python3 server.py   # start API server
