@@ -45,7 +45,7 @@ def make_game():
             word for word in words
             if center in word and all(ltr in allowed for ltr in word)
         ]
-        if len(found) >= MIN_FOUND:
+        if len(found) >= MIN_FOUND and any(len(set(w)) == 7 for w in found):
             return {
                 "letters": letters,
                 "center": center,
