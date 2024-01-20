@@ -13,7 +13,7 @@ function WordList({ words }) {
 
   return (
     <ul className="WordList">
-      {words.map((word) => (
+      {words.sort().map((word) => (
         <li key={word}>{word}</li>
       ))}
     </ul>

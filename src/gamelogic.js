@@ -23,4 +23,13 @@ function checkWord(word, found, center, wordlist) {
   return {msg: "Not a valid word", ok: false};
 }
 
-export { checkWord };
+
+/** Return array of valid words not in found list. */
+
+function getMissingWords(words, found) {
+  const foundSet = new Set(found);
+  return words.filter(w => !foundSet.has(w));
+}
+
+
+export { checkWord, getMissingWords };

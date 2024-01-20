@@ -26,7 +26,10 @@ function Form({ tryWord }) {
 
   return (
     <form className="Form" onSubmit={handleSubmit}>
-      <input autoFocus value={word} onChange={handleChange} />
+      <input
+        autoFocus
+        value={word}
+        onChange={handleChange} />
     </form>
   );
 }

@@ -3,7 +3,7 @@ import Letters from "./Letters";
 import Form from "./Form";
 import Feedback from "./Feedback";
 import WordList from "./WordList";
-import { checkWord } from "./gamelogic";
+import { checkWord, getMissingWords } from "./gamelogic";
 
 import "./Game.css";
 
@@ -15,6 +15,7 @@ import "./Game.css";
  * State:
  * - found: list of words player has found
  * - feedback: success/error message from most recent guess
+ * - showMissing: show missing words if true
  *
  * GameLoader -> Game -> { Letters, Form, Feedback, WordList }
  */
@@ -22,6 +23,8 @@ import "./Game.css";
 function Game({ game }) {
   const [found, setFound] = useState([]);
   const [feedback, setFeedback] = useState({});
+  const [showMissing, setShowMissing] = useState(false);
+  const missing = getMissingWords(game.wordlist, found);
 
   console.info("* Game", game, found, feedback);
 
@@ -38,13 +41,33 @@ function Game({ game }) {
 
   return (
     <div className="Game">
-        <Letters
-          letters={game.letters}
-          center={game.center}
-        />
-        <Form tryWord={tryWord} />
-        <Feedback message={feedback.msg} style={feedback.style} />
-        <WordList words={found} />
+      <Letters
+        letters={game.letters}
+        center={game.center}
+      />
+      <Form tryWord={tryWord} />
+      <Feedback message={feedback.msg} style={feedback.style} />
+      { found.length > 0 &&
+        <div>
+          <h3>Found
+            {" "}<small>({found.length})</small>
+          </h3>
+          <WordList words={found} />
+        { showMissing
+          ? <div>
+              <h3>Not Found
+                {" "}<small>({missing.length})</small>
+
+              </h3>
+              <WordList words={missing} />
+            </div>
+          : <button
+              onClick={() => setShowMissing(true)}>
+                Show {missing.length} missing
+            </button>
+        }
+        </div>
+      }
     </div>
   );
 }
