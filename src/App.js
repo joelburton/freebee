@@ -6,10 +6,10 @@ import "./App.css";
 function App() {
   console.info("* App");
   // use this to get game from API:
-  // return <GameLoader />;
+  return <GameLoader />;
 
   // or this to get game from static example JSON:
-  return <Game game={sampleGame} />
+  // return <Game game={sampleGame} />
 }
 
 export default App;

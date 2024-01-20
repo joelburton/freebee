@@ -2,6 +2,9 @@ import { useState } from "react";
 import { getRandomGame } from "./api";
 import Game from "./Game";
 
+import "./GameLoader.css";
+
+
 /** Loads game data from API and renders game.
  *
  * State:
@@ -18,6 +21,7 @@ function GameLoader() {
 
   console.info("* GameLoader", game, isLoading);
 
+  /** Get game from API and, once done, trigger rendering of Game. */
   async function startGame() {
     setIsLoading(true);
 
@@ -27,10 +31,14 @@ function GameLoader() {
   }
 
   if (!game && !isLoading) {
-    return <div><button onClick={startGame}>Start</button></div>;
+    return (
+      <div className="GameLoader">
+        <button onClick={startGame}>Start</button>
+      </div>
+    );
   }
 
-  if (isLoading) return <div>Loading game...</div>;
+  if (isLoading) return <div className="GameLoader">Loading game...</div>;
 
   return (
     <Game game={game} />
