@@ -1,6 +1,8 @@
 FreeBee React App
 =================
 
+.. image:: ui.png
+
 Spelling Bee-like game implemented in React.
 
 .. image:: diagram.png
