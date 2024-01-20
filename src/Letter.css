@@ -1,0 +1,19 @@
+.Letter {
+  height: 100px;
+  width: 100px;
+  font-size: 35px;
+  position: absolute;
+  border-radius: 50%;
+  text-align: center;
+  background-color: silver;
+}
+
+.Letter-isCenter {
+  background-color: gold;
+}
+
+.Letter span {
+  top: 26px;
+  position: relative;
+  text-transform: uppercase;
+}
