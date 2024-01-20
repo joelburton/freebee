@@ -1,3 +1,5 @@
+import "./WordList.css";
+
 /** List of words player has found.
  *
  * Props:
