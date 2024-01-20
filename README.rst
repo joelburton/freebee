@@ -2,10 +2,12 @@ FreeBee React App
 =================
 
 .. image:: ui.png
+  :width: 250px
 
 Spelling Bee-like game implemented in React.
 
 .. image:: diagram.png
+  :height: 200px;
 
 To use::
 
