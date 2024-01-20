@@ -3,24 +3,29 @@
  * Returns obj of {msg, ok: true|false}
  */
 
-function checkWord(word, found, center, wordlist) {
+function checkWord(word, found, game) {
   if (word.length < 4) {
     return {msg: "Too short!", ok: false};
   }
 
-  if (!word.includes(center)) {
-    return {msg: "Must use center letter", ok: false};
+  if (!word.includes(game.center)) {
+    return {msg: "Must use center!", ok: false};
+  }
+
+  if ([... word].some(ltr =>
+    !(game.letters.includes(ltr) || game.center === ltr))) {
+    return {msg: "Invalid letter!", ok: false};
   }
 
   if (found.includes(word)) {
     return {msg: "Already found!", ok: false};
   }
 
-  if (wordlist.includes(word)) {
-    return {msg: `Added: ${word.toUpperCase()}`, ok: true};
+  if (!game.wordlist.includes(word)) {
+    return {msg: "Invalid word!", ok: false};
   }
 
-  return {msg: "Not a valid word", ok: false};
+  return {msg: `Added: ${word.toUpperCase()}`, ok: true};
 }
 
 

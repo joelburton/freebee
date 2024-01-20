@@ -32,7 +32,7 @@ function Game({ game }) {
   function tryWord(word) {
     word = word.toLowerCase();
     console.log("Game tryWord", word);
-    const { msg, ok } = checkWord(word, found, game.center, game.wordlist);
+    const { msg, ok } = checkWord(word, found, game);
     if (ok) {
       setFound(f => [...f, word]);
     }

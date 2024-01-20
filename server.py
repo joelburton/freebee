@@ -13,7 +13,7 @@ from string import ascii_lowercase
 LETTERS = "".join(set(ascii_lowercase) - set("wzxjq"))
 
 # min # found words for a good game
-MIN_FOUND = 30
+MIN_FOUND = 40
 
 # url to get dictionary (any long wordlist will do; must be http, not https)
 WORDLIST_URL = "http://norvig.com/ngrams/enable1.txt"
