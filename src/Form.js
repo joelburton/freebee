@@ -12,7 +12,7 @@ import "./Form.css";
 
 function Form({ tryWord }) {
   const [word, setWord] = useState("");
-  console.info("* Form", word);
+  console.debug("* Form", word);
 
   function handleChange(evt) {
    setWord(evt.target.value);
