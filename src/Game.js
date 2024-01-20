@@ -3,6 +3,9 @@ import Letters from "./Letters";
 import Form from "./Form";
 import Feedback from "./Feedback";
 import WordList from "./WordList";
+import { checkWord } from "./gamelogic";
+
+import "./Game.css";
 
 /** Main game component
  *
@@ -18,27 +21,19 @@ import WordList from "./WordList";
 
 function Game({ game }) {
   const [found, setFound] = useState([]);
-  const [feedback, setFeedback] = useState("");
+  const [feedback, setFeedback] = useState({});
 
   console.info("* Game", game, found, feedback);
 
+  /** Try a word and, if good, add to list. Sets feedback w/result. */
   function tryWord(word) {
     word = word.toLowerCase();
-    console.log("Game tryWord", word, game.center);
-
-    // it might be nice to move this logic out of the React component
-    if (!word.includes(game.center)) {
-      setFeedback("Must use center letter");
-    } else if (word.length < 4) {
-      setFeedback("Too short!");
-    } else if (found.includes(word)) {
-      setFeedback("Already found!");
-    } else if (game.wordlist.includes(word)) {
-      setFeedback("Added to word list");
-      setFound(wl => [...wl, word]);
-    } else {
-      setFeedback("Not a valid word");
+    console.log("Game tryWord", word);
+    const { msg, ok } = checkWord(word, found, game.center, game.wordlist);
+    if (ok) {
+      setFound(f => [...f, word]);
     }
+    setFeedback({msg, style: ok ? "ok" : "err"});
   }
 
   return (
@@ -48,7 +43,7 @@ function Game({ game }) {
           center={game.center}
         />
         <Form tryWord={tryWord} />
-        <Feedback message={feedback} />
+        <Feedback message={feedback.msg} style={feedback.style} />
         <WordList words={found} />
     </div>
   );

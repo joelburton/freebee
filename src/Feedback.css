@@ -1,0 +1,13 @@
+.Feedback {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 1em;
+}
+
+.Feedback-err {
+  color: red;
+}
+
+.Feedback-ok {
+  color: darkgreen;
+}

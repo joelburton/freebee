@@ -8,8 +8,8 @@ import "./Letters.css";
 /** Letters of game board.
  *
  * Props:
- * - letters: string of non-center letters ("RSTLNA")
- * - center: center letter (eg "E")
+ * - letters: string of non-center letters ("rstlna")
+ * - center: center letter (eg "e")
  *
  * State:
  * - randomLetters: list of letters as currently arranged
@@ -31,9 +31,7 @@ function Letters({ letters, center }) {
       {randomLetters.map((letter) => (
         <Letter key={letter} letter={letter} />
       ))}
-      <button className="Letters-randomize" onClick={randomize}>
-        Shuffle
-      </button>
+      <button className="Letters-randomize" onClick={randomize}>↻</button>
     </div>
   );
 }

@@ -5,6 +5,11 @@ exports[`matches snapshot 1`] = `
   <div
     class="Letter "
   >
+    <div
+      class="Letter-hex"
+    >
+      ⬢
+    </div>
     <span>
       A
     </span>
@@ -17,6 +22,11 @@ exports[`matches snapshot: center letter 1`] = `
   <div
     class="Letter Letter-isCenter"
   >
+    <div
+      class="Letter-hex"
+    >
+      ⬢
+    </div>
     <span>
       A
     </span>

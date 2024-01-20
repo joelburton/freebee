@@ -1,7 +1,7 @@
 .Letters {
   position: relative;
   width: 350px;
-  height: 350px;
+  height: 360px;
 }
 
 .Letters .Letter:nth-child(1) {
@@ -40,7 +40,12 @@
 }
 
 .Letters-randomize {
-  top: 10px;
-  left: 10px;
+  top: 5px;
+  left: 5px;
   position: relative;
+  font-size: 200%;
+  color: gray;
+  border: none;
+  background-color: white;
+  cursor: crosshair;
 }

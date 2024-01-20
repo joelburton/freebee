@@ -8,6 +8,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter Letter-isCenter"
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         Z
       </span>
@@ -15,6 +20,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         A
       </span>
@@ -22,6 +32,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         B
       </span>
@@ -29,6 +44,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         C
       </span>
@@ -36,6 +56,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         D
       </span>
@@ -43,6 +68,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         E
       </span>
@@ -50,6 +80,11 @@ exports[`matches snapshot 1`] = `
     <div
       class="Letter "
     >
+      <div
+        class="Letter-hex"
+      >
+        ⬢
+      </div>
       <span>
         F
       </span>
@@ -57,7 +92,7 @@ exports[`matches snapshot 1`] = `
     <button
       class="Letters-randomize"
     >
-      Shuffle
+      ↻
     </button>
   </div>
 </div>

@@ -1,3 +1,17 @@
-.Form-input {
-  text-transform: uppoercase;
+.Form input {
+  text-transform: uppercase;
+  border: solid 2px darkgrey;
+  padding: 0.35em;
+  font-size: 120%;
+  text-align: center;
+  width: 7em;
+  font-weight: bold;
+}
+
+.Form input:focus {
+  outline: none;
+}
+
+.Form {
+  display: inline-block;
 }
