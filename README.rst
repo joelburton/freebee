@@ -1,7 +1,7 @@
 FreeBee React App
 =================
 
-.. image:: ui.png
+.. image:: meta/ui.png
   :width: 250px
 
 Spelling Bee-like game implemented in React.
@@ -21,5 +21,5 @@ And then launch front-end in a separate terminal::
 Design
 ------
 
-.. image:: diagram.png
+.. image:: meta/diagram.png
   :height: 200px

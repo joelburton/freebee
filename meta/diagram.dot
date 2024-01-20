@@ -3,8 +3,6 @@ digraph freebee {
     graph [margin=0]
     node [shape=rect]
     App -> GameLoader -> Game -> { WordList, Letters, Feedback, Form }
-    Letters -> { Letter1, Letter2, Letter3 }
-    Letter1 [label="Letter"]
-    Letter2 [label="Letter"]
-    Letter3 [label="..."]
+    Letters -> Letter
+    Letter [label="Letter\nLetter\nLetter\nLetter\nLetter\nLetter\nLetter"]
 }
