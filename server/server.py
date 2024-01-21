@@ -3,8 +3,8 @@
 # In order to avoid any dependencies, this uses only built-in Python libraries.
 # This code would prob be clearer as a Flask app and using the requests library.
 
+from words import words as raw_words
 import json
-import urllib.request
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from random import choice, sample
 from string import ascii_lowercase
@@ -18,23 +18,13 @@ MIN_FOUND = 40
 # url to get dictionary (any long wordlist will do; must be http, not https)
 WORDLIST_URL = "http://norvig.com/ngrams/enable1.txt"
 
-
-def get_dictionary():
-    """Gets dictionary of words.
-
-    So that this doesn't need to be ~2MB of a repo, this gets words
-    at server start via a request.
-    """
-    req = urllib.request.Request(WORDLIST_URL)
-    with urllib.request.urlopen(req) as response:
-        text = response.read().decode("utf8").lower()
-        return [
-            w for w in text.split()
-            if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
-        ]
+words = [
+    w for w in raw_words
+    if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
+]
 
 
-def make_game(words=None):
+def make_game():
     """Returns dict like:
 
         {
@@ -45,9 +35,6 @@ def make_game(words=None):
           wordlist: ["lane", stare", ...]
         }
     """
-
-    if not words:
-        words = legal_words
 
     print("Handling request")
     while True:
@@ -85,8 +72,5 @@ class FreeBeeAPIServer(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print("Downloading words")
-    legal_words = get_dictionary()
-    print("Read words:", ", ".join(legal_words[:5]), "...")
     print("Starting API server on port 8000")
     HTTPServer(('', 8000), FreeBeeAPIServer).serve_forever()

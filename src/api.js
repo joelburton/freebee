@@ -1,7 +1,7 @@
 /** Functionality for working with API. */
 
 
-const URL = "http://localhost:8000/";
+const URL = "https://wmpymxey5pu6nny6jcooe5clpi0riucb.lambda-url.us-west-1.on.aws";
 
 /** Get game data from API:
  *  {
