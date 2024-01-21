@@ -3,7 +3,7 @@
 # In order to avoid any dependencies, this uses only built-in Python libraries.
 # This code would prob be clearer as a Flask app and using the requests library.
 
-from words import words as raw_words
+from words import words as words
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from random import choice, sample
@@ -14,15 +14,6 @@ LETTERS = "".join(set(ascii_lowercase) - set("wzxjq"))
 
 # min # found words for a good game
 MIN_FOUND = 40
-
-# url to get dictionary (any long wordlist will do; must be http, not https)
-WORDLIST_URL = "http://norvig.com/ngrams/enable1.txt"
-
-words = [
-    w for w in raw_words
-    if len(w) >= 4 and all(ltr in LETTERS for ltr in w)
-]
-
 
 def make_game():
     """Returns dict like:
